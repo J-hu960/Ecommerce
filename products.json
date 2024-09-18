@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Eco-Friendly Water Bottle",
+    "description": "Reusable and sustainable water bottle made from BPA-free materials.",
+    "imageSrc": "/logo.jpg",
+    "price": 15.99,
+    "quantity": 10,
+    "category": "Verano"
+  },
+  {
+    "id": 2,
+    "name": "Wireless Bluetooth Headphones",
+    "description": "Noise-cancelling headphones with long-lasting battery life.",
+    "imageSrc": "/main.jpg",
+    "price": 89.99,
+    "quantity": 5,
+    "category": "Invierno"
+  },
+  {
+    "id": 3,
+    "name": "Organic Cotton T-Shirt",
+    "description": "Soft, breathable, and eco-friendly t-shirt made from 100% organic cotton.",
+    "imageSrc": "/logo.jpg",
+    "price": 25.99,
+    "quantity": 20,
+    "category": "Verano"
+  },
+  {
+    "id": 4,
+    "name": "Portable Solar Charger",
+    "description": "Compact solar charger for charging devices on the go.",
+    "imageSrc": "/main.jpg",
+    "price": 49.99,
+    "quantity": 7,
+    "category": "Verano"
+  },
+  {
+    "id": 5,
+    "name": "Smart Home Hub",
+    "description": "Control all your smart devices from one central hub.",
+    "imageSrc": "/logo.jpg",
+    "price": 129.99,
+    "quantity": 3,
+    "category": "Invierno"
+  },
+  {
+    "id": 6,
+    "name": "Memory Foam Pillow",
+    "description": "Ergonomic memory foam pillow for a perfect night's sleep.",
+    "imageSrc": "/main.jpg",
+    "price": 39.99,
+    "quantity": 12,
+    "category": "Invierno"
+  },
+  {
+    "id": 7,
+    "name": "Fitness Tracker",
+    "description": "Track your steps, heart rate, and more with this lightweight fitness tracker.",
+    "imageSrc": "/logo.jpg",
+    "price": 59.99,
+    "quantity": 8,
+    "category": "Verano"
+  },
+  {
+    "id": 8,
+    "name": "LED Desk Lamp",
+    "description": "Adjustable LED desk lamp with multiple brightness settings.",
+    "imageSrc": "/main.jpg",
+    "price": 29.99,
+    "quantity": 15,
+    "category": "Invierno"
+  },
+  {
+    "id": 9,
+    "name": "Stainless Steel Travel Mug",
+    "description": "Insulated travel mug to keep your drinks hot or cold for hours.",
+    "imageSrc": "/logo.jpg",
+    "price": 19.99,
+    "quantity": 18,
+    "category": "Invierno"
+  },
+  {
+    "id": 10,
+    "name": "Wireless Charging Pad",
+    "description": "Fast wireless charging pad compatible with all Qi-enabled devices.",
+    "imageSrc": "/main.jpg",
+    "price": 24.99,
+    "quantity": 6,
+    "category": "Verano"
+  }
+]
