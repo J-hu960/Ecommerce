@@ -1,0 +1,31 @@
+[
+    {
+      "id": 1,
+      "name": "Summer Breeze",
+      "description": "A light and airy collection perfect for warm weather, featuring pastel tones and breathable fabrics.",
+      "img": "/main.jpg",
+      "releaseDate": "2023-05-20"
+    },
+    {
+      "id": 2,
+      "name": "Autumn Hues",
+      "description": "Warm and cozy outfits in rich, earthy tones designed for the fall season.",
+      "img": "/logo.jpg",
+      "releaseDate": "2023-09-15"
+    },
+    {
+      "id": 3,
+      "name": "Winter Wonderland",
+      "description": "Stylish winter wear with layered designs to keep you warm and fashionable during cold days.",
+      "img": "/main.jpg",
+      "releaseDate": "2023-11-30"
+    },
+    {
+      "id": 4,
+      "name": "Spring Revival",
+      "description": "Bright and vibrant clothes inspired by blooming flowers and rejuvenating spring energy.",
+      "img": "/logo.jpg",
+      "releaseDate": "2024-03-10"
+    }
+  ]
+

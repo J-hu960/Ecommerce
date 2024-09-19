@@ -1,6 +1,5 @@
 import { create } from 'zustand';
-
-
+import { persist } from 'zustand/middleware';
 
 type State = {
   shopCart: TShopProduct[];
@@ -21,63 +20,58 @@ const initialValues: State = {
   shopCart: []
 };
 
-export const useShopcartStore = create<State & Action>((set, get) => ({
-  ...initialValues,
-  
-  addProduct(product: TProduct) {
-    const isAlreadyInShopCart = get().isProductInShopcart(product.id); // Usar get()
-    if (isAlreadyInShopCart) {
-      get().incrementProductQuantity(product.id);
-    } else {
-      const newArray:TShopProduct[] = [...get().shopCart, {...product,quantity:1}]; // Usar get()
-      console.log(newArray)
-      set(() => ({ shopCart: newArray }));
+export const useShopcartStore = create<State & Action>()(
+  persist(
+    (set, get) => ({
+      ...initialValues,
+      
+      addProduct(product: TProduct) {
+        const isAlreadyInShopCart = get().isProductInShopcart(product.id);
+        if (isAlreadyInShopCart) {
+          get().incrementProductQuantity(product.id);
+        } else {
+          const newArray: TShopProduct[] = [...get().shopCart, { ...product, quantity: 1 }];
+          set({ shopCart: newArray });
+        }
+      },
+      
+      deleteProduct(id: number) {
+        const filtered = get().shopCart.filter(prod => prod.id !== id);
+        set({ shopCart: filtered });
+      },
+      
+      decrementProductQuantity(id: number) {
+        const newArray = get().shopCart.map(prod => 
+          prod.id === id ? prod.quantity> 1 ? { ...prod, quantity: prod.quantity - 1 } : { ...prod, quantity: prod.quantity - 1 }  : prod
+        );
+        set({ shopCart: newArray });
+      },
+      
+      incrementProductQuantity(id: number) {
+        const newArray = get().shopCart.map(prod => 
+          prod.id === id ? { ...prod, quantity: prod.quantity + 1 } : prod
+        );
+        set({ shopCart: newArray });
+      },
+      
+      isProductInShopcart(id: number) {
+        return get().shopCart.some(prod => prod.id === id);
+      },
+      
+      getTotal() {
+        return get().shopCart.reduce((sum, prod) => sum + prod.quantity * prod.price, 0);
+      },
+      
+      getItems() {
+        return get().shopCart;
+      },
+      
+      reset() {
+        set({ shopCart: [] }); // Reset sólo el shopCart
+      }
+    }),
+    {
+      name: "cart-storage", // Nombre del storage
     }
-  },
-  
-  deleteProduct(id: number) {
-    const filtered = get().shopCart.filter(prod => prod.id !== id); // Usar get()
-    set(() => ({ shopCart: filtered }));
-  },
-  
-  decrementProductQuantity(id: number) {
-    const newArray = get().shopCart.map(prod => { // Usar get()
-      if (prod.id !== id) {
-        return prod;
-      } else {
-        return { ...prod, quantity: prod.quantity - 1 };
-      }
-    });
-
-    set(() => ({ shopCart: newArray }));
-  },
-  
-  incrementProductQuantity(id: number) {
-    const newArray = get().shopCart.map(prod => { // Usar get()
-      if (prod.id !== id) {
-        return prod;
-      } else {
-        return { ...prod, quantity: prod.quantity + 1 };
-      }
-    });
-
-    set(() => ({ shopCart: newArray }));
-  },
-  
-  isProductInShopcart(id: number) {
-    return get().shopCart.some(prod => prod.id === id); // Usar get()
-  },
-  
-  getTotal() {
-    return get().shopCart.reduce((sum, prod) => sum + prod.quantity * prod.price, 0); // Usar get()
-  },
-  
-  getItems() {
-    return get().shopCart;
-  },
-  
-  reset() {
-    set(initialValues);
-  }
-}));
-
+  )
+);

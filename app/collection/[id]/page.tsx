@@ -1,58 +1,33 @@
 "use client"
-import { useState } from 'react'
-import { ChevronDown, Filter, Grid, List } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+// import { useState } from 'react'
+// import { ChevronDown, Filter, Grid, List } from 'lucide-react'
+// import { Button } from "@/components/ui/button"
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuLabel,
+//   DropdownMenuSeparator,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu"
+import products from '../../../products.json'
 import Product from '@/app/Items'
+import Collections from '../../../categories.json'
 
-const products: TProduct[] = [
-  {
-    name: 'Slim Fit Jeans',
-    description: 'Comfortable and stylish for any occasion',
-    imageSrc: '/main.jpg', // Puedes usar /logo.jpg o /main.jpg
-    price: 59.99,
-    quantity: 10
-  },
-  {
-    name: 'Classic Leather Jacket',
-    description: 'Timeless style with modern details',
-    imageSrc: '/logo.jpg', // Puedes usar /logo.jpg o /main.jpg
-    price: 199.99,
-    quantity: 5
-  },
-  {
-    name: 'Casual T-Shirt',
-    description: 'Soft and comfortable t-shirt for everyday wear',
-    imageSrc: '/main.jpg', // Puedes usar /logo.jpg o /main.jpg
-    price: 29.99
-    // quantity es opcional
-  },
-  {
-    name: 'Running Shoes',
-    description: 'Lightweight and durable shoes for running',
-    imageSrc: '/logo.jpg', // Puedes usar /logo.jpg o /main.jpg
-    price: 89.99,
-    quantity: 15
-  }
-];
+export default function CollectionPage({params}:{params:{id:number}}) {
 
-export default function CollectionPage() {
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
-  const [sortBy, setSortBy] = useState('featured')
+  
+
+  const filterByCategory = products.filter(prod=>prod.category == params.id)
+  const collection = Collections.filter(col=>col.id==params.id)[0]
+  
 
   return (
     <div className="bg-white mt-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900">Summer Collection</h1>
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900">{collection.name}</h1>
 
           {/* <div className="flex items-center">
             <DropdownMenu>
@@ -127,8 +102,8 @@ export default function CollectionPage() {
 
             {/* Product grid */}
             <div className="lg:col-span-3">
-              <div className={`${viewMode === 'grid' ? 'grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8' : 'space-y-6'}`}>
-                {products.map((product) => (
+              <div className={'grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8'}>
+                {filterByCategory.map((product) => (
                     <Product product={product} key={product.name} />
                 ))}
               </div>

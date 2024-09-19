@@ -1,5 +1,6 @@
 type TProduct = {
-   id:number;
+  stripe_id:string;
+    id:number;
     name: string;
     description: string;
     imageSrc: string;

@@ -14,7 +14,7 @@ const Header = () => {
     <>
     <header className="absolute bg-white h-28  inset-x-0 top-0 z-50">
       <nav className="flex items-center justify-between p-6 pt-2 lg:px-8" aria-label="Global">
-      <div className="flex lg:flex-1">
+      <div className="flex lg:flex-1 items-center justify-around w-1/4 ">
         <a href="#" className="-m-1.5">
           <span className="sr-only">Your Company</span>
           <Image
@@ -24,7 +24,11 @@ const Header = () => {
             alt="logo"
           />
         </a>
+        <Link href={'/'}  className="text-lg font-semibold leading-6 text-gray-600">
+             Home Page
+         </Link>
       </div>
+      
       <h2 className='hidden lg:flex text-3xl text-black font-bold font-serif '>Saint Michel</h2>
       <div className="flex lg:hidden">
         <button
