@@ -1,5 +1,6 @@
 type TProduct = {
-  stripe_id:string;
+  stripe_priceId:string;
+    stripe_id:string;
     id:number;
     name: string;
     description: string;

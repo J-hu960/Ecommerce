@@ -4,6 +4,7 @@ import React, {  useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useShopcartStore } from '../context/Shopcart'; // Cambia la ruta según la ubicación de tu store
 import CartProduct from '../components/CartProduct';
+import axios from 'axios'
 
 const Page = () => {
   const router = useRouter();
@@ -32,9 +33,15 @@ const Page = () => {
   
 
   // Manejador para pagar (aquí iría tu lógica de pago)
-  const handleCheckout = () => {
-    alert('Llevándote al proceso de pago...');
-    // Redirigir a página de pago, etc.
+  const handleCheckout = async () => {
+    try {
+      const { data } = await axios.post('/api/stripe', {items: products});
+  
+      // Redirigir a la URL de Stripe que recibimos de la API
+      window.location.href = data.url;
+    } catch (error) {
+      console.error('Error durante el checkout:', error);
+    }
   };
 
   // Manejador para volver atrás

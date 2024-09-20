@@ -1,8 +1,17 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { CheckCircle } from "lucide-react"
 import Link from "next/link"
+import { useEffect } from "react"
+import { useShopcartStore } from "../context/Shopcart"
 
 export default function Component() {
+  const resetCart = useShopcartStore((state)=>state.reset)
+  useEffect(()=>{
+    resetCart()
+
+  },[])
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-green-50 to-green-100">
       <div className="text-center space-y-6 p-8 bg-white rounded-lg shadow-xl max-w-md w-full">
