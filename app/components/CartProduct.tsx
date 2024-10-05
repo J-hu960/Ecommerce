@@ -35,9 +35,11 @@ const CartProduct = ({product,setProducts}:props) => {
         }
     }
 
-
-
-
+    const handleEliminateProduct=()=>{
+     
+      eliminateProductFromCart(product.id)
+      setProducts(getStoreProducts())
+    }
 
   return (
     <div key={product.name} className="flex items-center mb-4 border-b pb-4">
@@ -47,6 +49,7 @@ const CartProduct = ({product,setProducts}:props) => {
             <button onClick={handleIncrementButton}>+</button>
             <button onClick={handleDecrementButton}>-</button>
           </div>
+          <button onClick={handleEliminateProduct} className='bg-slate-100 text-black p-2 rounded'>Quitar</button>
         </div>
     <div className="ml-4">
       <h2 className="text-xl font-semibold">{product.name}</h2>

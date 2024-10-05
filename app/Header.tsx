@@ -4,11 +4,16 @@ import { Menu, ShoppingCart, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, {useState } from 'react'
+import { useShopcartStore } from './context/Shopcart'
+import NavLink from './components/NavLink'
+
 
 
 
 const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const GetNumberOfProdsInCart = useShopcartStore((state)=>state.getNumOfItems)
+
 
   return (
     <>
@@ -25,25 +30,29 @@ const Header = () => {
         </button>
          </div>
        
-          <div className='hidden lg:flex lg:w-1/4 items-center justify-around w-auto gap-x-4'>
-            <Link href={'/'}  className="text-lg font-semibold leading-6 text-gray-600">
+          <div className='hidden lg:flex lg:w-1/4 items-center justify-around w-auto gap-x-0'>
+            <NavLink href={'/'}  >
                Inicio
-           </Link>
-           <Link href={'/'}  className="text-lg font-semibold leading-6 text-gray-600">
+           </NavLink>
+           <Link href={"/#collections"} className="text-sm font-semibold leading-6 text-gray-600">
                Catalogo
            </Link>
-           <Link href={'/'}  className="text-lg font-semibold leading-6 text-gray-600">
+           <Link href="/#contact" className="text-sm font-semibold leading-6 text-gray-600">
                Contacto
            </Link>
           </div>
 
-         <h2 className='flex text-3xl text-black font-bold font-serif lg:w-2/4 items-center justify-center'>Saint Michel</h2>
-
+        <div className='flex lg:w-2/4 items-center justify-center'>
+           <Image alt='Letras del logo' height={50} width={100} src={'/writedlogo.avif'} />
+        </div>
 
          <div className=" flex lg:justify-end lg:w-1/4 lg:pr-8">
-        <Link href={'/cart'}  className="text-sm font-semibold leading-6 text-gray-900">
-          <ShoppingCart className="h-6 w-6" aria-hidden="true" />
-        </Link>
+         <Link href={'/cart'} className='flex flex-col items-center justofy-center hover:cursor-pointer hover:border-black hover:scale-125 transition-all ease-in text-blue-500 hover:text-black hover:bg-blue-400 border-blue-200 rounded-full p-2 w-12'>
+              <ShoppingCart className="h-6 w-6" aria-hidden="true" />
+
+           <p className=' hover:text-black text-xl '>{GetNumberOfProdsInCart()}</p>
+         </Link >
+       
         </div>
        </nav>
     {/* Mobile menu */}

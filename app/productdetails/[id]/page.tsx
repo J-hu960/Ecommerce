@@ -4,7 +4,7 @@ import { Truck, Heart, Share2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
-
+import Notification from '@/app/components/Notification'
 import { useRouter } from "next/navigation";
 import { useShopcartStore } from '@/app/context/Shopcart'
 import Products from '../../../products.json'
@@ -23,11 +23,26 @@ export default function Page({params}:{params:{id:number}}) {
   const addProductToCart = useShopcartStore((state)=>state.addProduct)
   const [mainImage, setMainImage] = useState(product.imageSrc)
   const [selectedSize, setSelectedSize] = useState("m")
+  const [isNotificationVisible, setNotificationVisible] = useState(false);
+
 
   const handleAddToCart = (e:React.MouseEvent) =>{
-    e.preventDefault();
-    console.log('adding prduct',product)
-    addProductToCart(product)
+    try {
+      e.preventDefault();
+      console.log('adding prduct',product)
+      addProductToCart(product)
+      //Add popup>
+      setNotificationVisible(true);
+      setTimeout(()=>{
+        setNotificationVisible(false);
+      },2000)
+
+      
+    } catch (error) {
+      console.log(error)
+    }
+   
+
   }
 
   const router = useRouter()
@@ -143,19 +158,26 @@ export default function Page({params}:{params:{id:number}}) {
                 </RadioGroup>
               </div>
 
-              <div className="mt-8 flex">
+              <div className="mt-8 flex flex-col gap-y-2">
+             
                 <Button onClick={(e)=>handleAddToCart(e)} type="submit" size="lg" className="w-full">
                   Add to cart
                 </Button>
+                <Notification
+                  message="Item añadido al carrito"
+                  type="success"
+                  visible={isNotificationVisible}
+                  setVisible={setNotificationVisible}
+                 />
               </div>
-              <div className="mt-4 flex space-x-4">
+              {/* <div className="mt-4 flex space-x-4">
                 <Button variant="outline" size="lg" className="flex-1">
                   <Heart className="mr-2 h-4 w-4" /> Add to wishlist
                 </Button>
                 <Button variant="outline" size="icon">
                   <Share2 className="h-4 w-4" />
                 </Button>
-              </div>
+              </div> */}
             </form>
 
             {/* Product details */}

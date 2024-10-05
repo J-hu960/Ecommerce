@@ -14,6 +14,7 @@ type Action = {
   reset: () => void;
   getTotal: () => number;
   getItems: () => TShopProduct[]; 
+  getNumOfItems:()=>number
 };
 
 const initialValues: State = {
@@ -64,6 +65,12 @@ export const useShopcartStore = create<State & Action>()(
       
       getItems() {
         return get().shopCart;
+      },
+
+      getNumOfItems(){
+        return get().shopCart.length;
+
+
       },
       
       reset() {

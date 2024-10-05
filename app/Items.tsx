@@ -10,7 +10,7 @@ const Product = ({product}:props) => {
 
 
   return (
-    <div key={product.name} className="group relative">
+    <div key={product.name} className="group relative ml-6">
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
                   <img
                     src={product.imageSrc}
