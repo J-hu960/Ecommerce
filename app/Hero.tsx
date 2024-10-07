@@ -7,7 +7,12 @@ import Product from './Items'
 import Products from '../products.json'
 import MyVideo from './components/MyVideo'
 import AboutUs from './components/AboutUs'
+import Link from 'next/link'
 const Hero = () => {
+
+  const LatestCollection = 3
+
+  const filteredProducts = Products.filter(product=>product.category == LatestCollection)
 
  
   return (
@@ -47,15 +52,22 @@ const Hero = () => {
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-none">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">Whats new</h2>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">
-            {Products.map((item) => (
+          <div className='flex flex-row items-center justify-start'>
+            <h2 className="text-3xl  font-extrabold tracking-tight text-gray-900 sm:text-2xl mb-8">La última colección</h2>
+            <Link href={`/collection/${LatestCollection}`} className='-mt-6 ml-6 underline text-gray-600 hover:text-black p-2 rounded-full font-bold text-center'>Ver todo</Link>
+          </div>
+         
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+            {filteredProducts?.map((item) => (
               <Product key={item.name} product={item} />
             ))}
           </div>
         </div>
+
       </div>
+
     </div>
+
 
     <section className='w-full h-auto flex items-center justify-center'>
        <MyVideo />

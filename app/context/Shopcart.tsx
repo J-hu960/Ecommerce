@@ -69,8 +69,6 @@ export const useShopcartStore = create<State & Action>()(
 
       getNumOfItems(){
         return get().shopCart.length;
-
-
       },
       
       reset() {

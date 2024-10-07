@@ -3,16 +3,24 @@
 import { Menu, ShoppingCart, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, {useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { useShopcartStore } from './context/Shopcart'
 import NavLink from './components/NavLink'
+import TextCarousel from './components/TextCarrousel'
 
 
 
 
 const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [numberItemsInCart,setNumberItemsInCArt] =useState<number>(0)
     const GetNumberOfProdsInCart = useShopcartStore((state)=>state.getNumOfItems)
+    const shopCart = useShopcartStore((state)=>state.shopCart)
+
+    useEffect(() => {
+      // Actualiza el número de items en el carrito cuando shopCart cambia
+      setNumberItemsInCArt(GetNumberOfProdsInCart());
+  }, [shopCart, GetNumberOfProdsInCart]);
 
 
   return (
@@ -46,19 +54,19 @@ const Header = () => {
            <Image alt='Letras del logo' height={50} width={100} src={'/writedlogo.avif'} />
         </div>
 
-         <div className=" flex lg:justify-end lg:w-1/4 lg:pr-8">
-         <Link href={'/cart'} className='flex flex-col items-center justofy-center hover:cursor-pointer hover:border-black hover:scale-125 transition-all ease-in text-blue-500 hover:text-black hover:bg-blue-400 border-blue-200 rounded-full p-2 w-12'>
+         <div className=" flex lg:justify-end lg:w-1/4 lg:pr-8 hover:cursor-pointer">
+         <Link href={'/cart'} className='flex flex-col items-center justofy-center  hover:border-black hover:scale-125 transition-all ease-in text-black hover:cursor-pointer  hover:text-black rounded-full p-2 w-12'>
               <ShoppingCart className="h-6 w-6" aria-hidden="true" />
 
-           <p className=' hover:text-black text-xl '>{GetNumberOfProdsInCart()}</p>
+           <p className=' hover:text-black text-xl  hover:cursor-pointer'>{numberItemsInCart}</p>
          </Link >
        
         </div>
        </nav>
     {/* Mobile menu */}
     {mobileMenuOpen && (
-      <div className="lg:hidden">
-        <div className="fixed inset-0 z-50" />
+      <div className={`lg:hidden transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+      <div className="fixed inset-0 z-50" />
         <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
@@ -85,34 +93,21 @@ const Header = () => {
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  New Arrivals
+                 Inicio
                 </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Women
+                  Catálogo
                 </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Men
+                  Contacto
                 </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Accessories
-                </a>
-              </div>
-              <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Cart
-                </a>
+              
               </div>
             </div>
           </div>
@@ -120,7 +115,7 @@ const Header = () => {
       </div>
     )}
     </header>
-  
+     <TextCarousel />
     </>
   )
 }

@@ -3,21 +3,21 @@
     "stripe_priceId":"price_1Q0mjILloXrIyDr3G8gMBjNe",
     "stripe_id":"prod_QsXocI8HlwgGlW",
     "id": 1,
-    "name": "Eco-Friendly Water Bottle",
+    "name": "Box logo tree",
     "description": "Reusable and sustainable water bottle made from BPA-free materials.",
-    "imageSrc": "/logo.jpg",
-    "price": 15.99,
+    "imageSrc": "/camisetablanca.jpg",
+    "price": 26.00,
     "quantity": 10,
-    "category": 1
+    "category": 3
   },
   {
     "stripe_priceId":"price_1Q0mn6LloXrIyDr3vE2puiMN",
     "stripe_id":"prod_QsXsXfb8ADzYDG",
     "id": 2,
-    "name": "Wireless Bluetooth Headphones",
+    "name": "C'est la vie hoodie",
     "description": "Noise-cancelling headphones with long-lasting battery life.",
-    "imageSrc": "/main.jpg",
-    "price": 25,
+    "imageSrc": "/sudaderanegra.jpg",
+    "price": 40.00,
     "quantity": 5,
     "category": 3
   },
@@ -25,23 +25,23 @@
     "stripe_priceId":"price_1Q0mkkLloXrIyDr3d6ZFxccX",
     "stripe_id":"prod_QsXqskV14yizHz",
     "id": 3,
-    "name": "Organic Cotton T-Shirt",
+    "name": "Gallery tree",
     "description": "Soft, breathable, and eco-friendly t-shirt made from 100% organic cotton.",
-    "imageSrc": "/logo.jpg",
-    "price":  89.99,
+    "imageSrc": "/camisetanegra2.jpg",
+    "price":  26.00,
     "quantity": 20,
-    "category": 1
+    "category": 3
   },
   {
     "stripe_priceId":"price_1Q0mojLloXrIyDr3kpLBBhIL",
     "stripe_id":"prod_QsXuB3z2wpIKsM",
     "id": 4,
-    "name": "Portable Solar Charger",
+    "name": "Starts tree",
     "description": "Compact solar charger for charging devices on the go.",
-    "imageSrc": "/main.jpg",
-    "price": 49.99,
+    "imageSrc": "/camisetanegra.jpg",
+    "price": 29.99,
     "quantity": 7,
-    "category": 4
+    "category": 3
     }
   
 ]
